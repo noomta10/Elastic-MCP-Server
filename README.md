@@ -104,6 +104,8 @@ GET readme-index/_search
 ```bash
 npm install -g @elastic/mcp-server-elasticsearch zod
 ```
+```bash
+claude mcp add elasticsearch mcp-server-elasticsearch -e ES_USERNAME=elastic -e ES_PASSWORD=Aa123456 -e ES_SSL_SKIP_VERIFY=true -- --url http://127.0.0.1:9200```
 
 #### Config Location
 
@@ -114,18 +116,19 @@ npm install -g @elastic/mcp-server-elasticsearch zod
 #### The Final Working Config
 
 ```json
-{
-  "mcpServers": {
-    "elasticsearch": {
-      "command": "mcp-server-elasticsearch",
-      "args": [],
-      "env": {
-        "ES_URL": "http://127.0.0.1:9200",
-        "ES_SSL_SKIP_VERIFY": "true"
+"mcpServers": {
+        "elasticsearch": {
+          "command": "mcp-server-elasticsearch",
+          "args": [],
+          "env": {
+            "ES_USERNAME": "elastic",
+            "ES_PASSWORD": "Aa123456",
+            "ES_SSL_SKIP_VERIFY": "true",
+            "ES_URL": "http://127.0.0.1:9200",
+            "ELASTIC_CLIENT_APIVERSIONING": "false"
+          }
+        }
       }
-    }
-  }
-}
 ```
 
 ---
@@ -147,6 +150,7 @@ You should see a green checkmark (✓) next to the Elasticsearch server.
 To ensure Claude does not get confused by local files, use explicit prompts such as:
 
 ```
+ccr code 
 Search the readme-index using the elasticsearch__search tool...
 ```
 

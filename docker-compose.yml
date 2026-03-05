@@ -4,8 +4,14 @@ services:
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=false
+      # 1. Enable security
+      - xpack.security.enabled=true
+      # 2. Set the 'elastic' user password
+      - ELASTIC_PASSWORD=Aa123456
       - xpack.license.self_generated.type=trial
+      # 3. Disable enrollment tokens & SSL for local dev simplicity
+      - xpack.security.enrollment.enabled=false
+      - xpack.security.http.ssl.enabled=false
     ports:
       - 9200:9200
     mem_limit: 4GB
@@ -15,6 +21,9 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      # 4. Provide Kibana with the credentials to talk to Elasticsearch
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=Aa123456
     ports:
       - 5601:5601
     depends_on:

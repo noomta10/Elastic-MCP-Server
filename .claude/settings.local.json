@@ -4,7 +4,11 @@
       "Bash(claude mcp:*)",
       "Bash(docker-compose ps:*)",
       "Bash(curl:*)",
-      "mcp__elasticsearch__search"
+      "mcp__elasticsearch__search",
+      "mcp__elasticsearch__list_indices",
+      "WebSearch",
+      "mcp__elasticsearch__get_mappings",
+      "mcp__elasticsearch__get_shards"
     ]
   }
 }

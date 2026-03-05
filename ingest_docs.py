@@ -1,10 +1,11 @@
 from elasticsearch import Elasticsearch
 import os
 
-# 1. Connect with Compatibility Mode
-# meta_header=False prevents the 'Accept version must be 8 or 7' error
+# 1. Connect with Credentials and Compatibility Mode
+# Use 'elastic' and the password you set in your docker-compose.yml
 es = Elasticsearch(
     "http://localhost:9200",
+    basic_auth=("elastic", "Aa123456"), 
     meta_header=False 
 )
 
