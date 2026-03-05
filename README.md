@@ -97,24 +97,21 @@ GET readme-index/_search
 
 ---
 
-
----
-
 ### 7. Install Elastic MCP server
 
-## Installed globally via:
+#### Installed globally via:
 
 ```bash
 npm install -g @elastic/mcp-server-elasticsearch zod
 ```
 
-## Config Location
+#### Config Location
 
 ```
 %USERPROFILE%\.claude.json
 ```
 
-## The Final Working Config
+#### The Final Working Config
 
 ```json
 {
@@ -130,8 +127,6 @@ npm install -g @elastic/mcp-server-elasticsearch zod
   }
 }
 ```
----
-
 
 ---
 
@@ -144,8 +139,6 @@ claude mcp list
 ```
 
 You should see a green checkmark (✓) next to the Elasticsearch server.
----
-
 
 ---
 
