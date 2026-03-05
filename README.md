@@ -93,4 +93,70 @@ GET readme-index/_search
 ---
 
 
+### 6. Configure CCR (Claude Code Router) with Erez's guide
+
+---
+
+
+---
+
+### 7. Install Elastic MCP server
+
+## Installed globally via:
+
+```bash
+npm install -g @elastic/mcp-server-elasticsearch zod
+```
+
+## Config Location
+
+```
+%USERPROFILE%\.claude.json
+```
+
+## The Final Working Config
+
+```json
+{
+  "mcpServers": {
+    "elasticsearch": {
+      "command": "mcp-server-elasticsearch",
+      "args": [],
+      "env": {
+        "ES_URL": "http://127.0.0.1:9200",
+        "ES_SSL_SKIP_VERIFY": "true"
+      }
+    }
+  }
+}
+```
+---
+
+
+---
+
+### 8. Verification
+
+Run:
+
+```bash
+claude mcp list
+```
+
+You should see a green checkmark (✓) next to the Elasticsearch server.
+---
+
+
+---
+
+### 9. Start using it
+
+To ensure Claude does not get confused by local files, use explicit prompts such as:
+
+```
+Search the readme-index using the elasticsearch__search tool...
+```
+
+This ensures Claude uses the MCP Elasticsearch tool instead of attempting to read local files.
+
 ---
