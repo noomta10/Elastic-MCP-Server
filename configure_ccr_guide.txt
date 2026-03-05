@@ -1,0 +1,43 @@
+awesome ccr guide
+claude expects you to use its own paid models. we will use ccr to bypass those requirements, by redirecting and converting claude to work with free models.
+
+how do we use ccr?
+1. install the newest version of ccr and claude.
+npm install -g @anthropic-ai/claude-code @musistudio/claude-code-router
+
+2. create api keys to use in our ccr config. 
+	a. go to https://openrouter.ai/keys. 
+	b. create an account 
+	c. create a key 
+	d. copy its value (should start with sk).
+
+3. create environment variable for the openrouter key. the var name will be OPENROUTER_API_KEY, and the value is the value you copied earlier.
+command for powershell: 
+[System.Environment]::SetEnvironmentVariable('OPENROUTER_API_KEY', 'YOUR_KEY_HERE', 'User')
+
+4. find a free model, prefarably one with a lot of tokens, on the openrouter site. go to models, and on the sidebar under prompt pricing, limit to free models. copy the model id. I used z-ai/glm-4.5-air:free.
+
+5. in your favorite command line, type: ccr ui.
+
+6. we will now add your model. 
+	a. you'll see that ccr already has a default provider. delete it.
+	b. click add provider
+	c. import from template -> openrouter
+	d. paste your api key under the api key field.
+	e. paste the model id under Models and click add model. you can remove the other models, but you don't have to.
+	f. save.
+	g. edit the router settings. set everything to use openrouter,<model-id>.
+	h. click save and restart.
+
+7. back in your terminal, type ccr restart. verify the router is up using ccr status.
+
+8. type ccr model, choose default, to verify ccr is using the correct models.
+
+9. open claude using ccr code. this will open claude using the router configurations, instead of its own. if you don't do this, you won't be able to use non anthropic models.
+* if you are logged in to claude, log out. you don't need a user for ccr. don't log in.
+
+10. type "hi (:" or something. if it responds with anything that isn't an error, congrats! you have successfully ripped off claude!
+* it may take some time to respond. free model after all
+** if you use /model in claude, you will only see claude's default models. this is fine. the router is tricking claude into thinking it's using an anthropic model while using a free model. you can see it's the free model being used at https://openrouter.ai/activity.
+
+thats what worked for me. unlike the guide, we will not create a config.json for ourselves. that's the main difference i think. trust ccr ui. its good.
